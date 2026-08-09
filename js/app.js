@@ -122,13 +122,15 @@ function createDocumentCard(item) {
 
     const keywords = item.keywords || [];
 
+    // Show only the first 4 useful keywords
+    const visibleKeywords = keywords.slice(0, 4);
 
     let keywordHTML = "";
 
-    keywords.forEach(keyword => {
+    visibleKeywords.forEach(keyword => {
 
         keywordHTML += `
-            <span class="tag">
+            <span class="document-keyword">
                 ${keyword}
             </span>
         `;
@@ -136,97 +138,123 @@ function createDocumentCard(item) {
     });
 
 
-    let importantHTML = "";
-
-    if (item.important) {
-
-        importantHTML = `
-            <span
-                class="tag"
-                style="background:#fff3cd;color:#8a5a00;"
-            >
-                ⭐ Important
-            </span>
-        `;
-
-    }
+    const importantHTML =
+        item.important
+            ? `
+                <span class="document-badge important-badge">
+                    ⭐ Important
+                </span>
+              `
+            : "";
 
 
     return `
 
         <article class="document-card">
 
-            <div class="document-top">
+            <!-- TITLE -->
 
-                <div>
+            <div class="document-card-title">
 
-                    <div class="document-title">
-                        ${item.title}
-                    </div>
-
-                    <div class="document-meta">
-
-                        ${item.authority || "SSD Department"}
-
-                        <br>
-
-                        ${item.type}
-                        •
-                        ${formatDate(item.date)}
-
-                        <br>
-
-                        Letter / Order No.:
-                        ${item.letterNo}
-
-                    </div>
-
-                </div>
+                ${item.important ? "⭐ " : ""}
+                ${item.title}
 
             </div>
 
 
-            <div class="document-tags">
+            <!-- DOCUMENT REFERENCE -->
 
-                <span class="tag">
+            <div class="document-reference">
+
+                <span>
+                    ${item.letterNo}
+                </span>
+
+                <span class="meta-dot">
+                    •
+                </span>
+
+                <span>
+                    ${formatDate(item.date)}
+                </span>
+
+            </div>
+
+
+            <!-- AUTHORITY -->
+
+            <div class="document-authority">
+
+                🏛️ ${item.authority || "SSD Department"}
+
+            </div>
+
+
+            <!-- BADGES -->
+
+            <div class="document-badges">
+
+                <span class="document-badge category-badge">
                     ${item.category}
+                </span>
+
+                <span class="document-badge type-badge">
+                    ${item.type}
                 </span>
 
                 ${importantHTML}
 
-                ${keywordHTML}
+            </div>
+
+
+            <!-- SUMMARY -->
+
+            <div class="document-summary">
+
+                ${item.summary || ""}
 
             </div>
 
 
-            <p
-                class="document-meta"
-                style="margin-top:10px;"
-            >
-                ${item.summary || ""}
-            </p>
-
+            <!-- EFFECTIVE DATE -->
 
             ${
                 item.effectiveFrom
                 ? `
-                    <div
-                        class="document-meta"
-                        style="margin-top:8px;"
-                    >
-                        Effective from:
+                    <div class="effective-date">
+
+                        <strong>
+                            Effective from:
+                        </strong>
+
                         ${formatDate(item.effectiveFrom)}
+
                     </div>
-                `
+                  `
                 : ""
             }
 
+
+            <!-- KEYWORDS -->
+
+            ${
+                visibleKeywords.length
+                ? `
+                    <div class="document-keywords">
+                        ${keywordHTML}
+                    </div>
+                  `
+                : ""
+            }
+
+
+            <!-- ACTIONS -->
 
             <div class="document-actions">
 
                 <a
                     href="${item.file}"
-                    class="btn btn-primary"
+                    class="document-btn document-btn-primary"
                     target="_blank"
                     rel="noopener"
                 >
@@ -236,7 +264,7 @@ function createDocumentCard(item) {
 
                 <a
                     href="${item.file}"
-                    class="btn btn-secondary"
+                    class="document-btn document-btn-secondary"
                     download
                 >
                     ⬇ Download
