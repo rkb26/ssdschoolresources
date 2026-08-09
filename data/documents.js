@@ -1,55 +1,165 @@
 const documents = [
 
+    // -----------------------------------------
+    // REAL SSD DOCUMENT
+    // -----------------------------------------
+
     {
         id: 1,
-        title: "Sample SSD Circular – School Administration",
-        letterNo: "SSD/2026/001",
-        date: "2026-08-09",
-        department: "SSD",
-        category: "Administration",
-        type: "Circular",
-        description: "Sample document for testing the SSD School Resource Portal.",
-        file: "#",
-        tags: ["Administration", "Circular", "2026"]
+
+        title: "Enhancement of Pre-Matric and Post-Matric Scholarship Rates",
+
+        letterNo: "28834/SSD",
+
+        date: "2025-11-27",
+
+        category: "Hostel",
+
+        type: "Resolution",
+
+        authority: "ST & SC Development, M & BCW Department, Government of Odisha",
+
+        summary:
+            "Resolution regarding enhancement of Pre-Matric and Post-Matric Scholarship rates and related boarding, dietary and miscellaneous expenditure.",
+
+        keywords: [
+            "PMS",
+            "Scholarship",
+            "Pre-Matric",
+            "Post-Matric",
+            "ST",
+            "SC",
+            "Boarding",
+            "Hostel"
+        ],
+
+        effectiveFrom: "2025-12-01",
+
+        important: true,
+
+        file:
+            "documents/2025/ssd-scholarship-rate-revision-2025.pdf"
     },
+
+
+    // -----------------------------------------
+    // SAMPLE DOCUMENTS
+    // -----------------------------------------
 
     {
         id: 2,
-        title: "Sample Hostel Management Guidelines",
-        letterNo: "SSD/2026/002",
-        date: "2026-08-07",
-        department: "SSD",
-        category: "Hostel",
-        type: "Guideline",
-        description: "Sample hostel guideline used to test document search and display.",
-        file: "#",
-        tags: ["Hostel", "Guideline", "2026"]
+
+        title: "Sample SSD Circular – School Administration",
+
+        letterNo: "SSD/2026/001",
+
+        date: "2026-08-09",
+
+        category: "Administration",
+
+        type: "Circular",
+
+        authority: "SSD Department",
+
+        summary:
+            "Sample document for testing the SSD School Resource Portal.",
+
+        keywords: [
+            "Administration",
+            "Circular",
+            "School"
+        ],
+
+        important: false,
+
+        file: "#"
     },
+
 
     {
         id: 3,
-        title: "Sample Academic Instructions",
-        letterNo: "SSD/2026/003",
-        date: "2026-08-05",
-        department: "SSD",
+
+        title: "Sample Academic Guidelines",
+
+        letterNo: "SSD/2026/002",
+
+        date: "2026-08-07",
+
         category: "Academic",
-        type: "Instruction",
-        description: "Sample academic instruction for testing the portal.",
-        file: "#",
-        tags: ["Academic", "Instruction", "2026"]
+
+        type: "Guidelines",
+
+        authority: "SSD Department",
+
+        summary:
+            "Sample academic guidelines used for testing the portal.",
+
+        keywords: [
+            "Academic",
+            "Guidelines"
+        ],
+
+        important: false,
+
+        file: "#"
     },
+
 
     {
         id: 4,
-        title: "Sample Student Welfare Circular",
+
+        title: "Sample Finance Notification",
+
+        letterNo: "SSD/2026/003",
+
+        date: "2026-08-05",
+
+        category: "Finance",
+
+        type: "Notification",
+
+        authority: "SSD Department",
+
+        summary:
+            "Sample finance notification for testing the portal.",
+
+        keywords: [
+            "Finance",
+            "Notification"
+        ],
+
+        important: false,
+
+        file: "#"
+    },
+
+
+    {
+        id: 5,
+
+        title: "Sample Miscellaneous Form",
+
         letterNo: "SSD/2026/004",
+
         date: "2026-08-02",
-        department: "SSD",
-        category: "Student Welfare",
-        type: "Circular",
-        description: "Sample student welfare circular for testing purposes.",
-        file: "#",
-        tags: ["Student Welfare", "Circular", "2026"]
+
+        category: "Miscellaneous",
+
+        type: "Form",
+
+        authority: "SSD Department",
+
+        summary:
+            "Sample form for testing the miscellaneous category.",
+
+        keywords: [
+            "Form",
+            "Miscellaneous"
+        ],
+
+        important: false,
+
+        file: "#"
     }
 
 ];
