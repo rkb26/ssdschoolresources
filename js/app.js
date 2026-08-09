@@ -1,12 +1,7 @@
 /* =========================================
    SSD SCHOOL RESOURCE PORTAL
-   Main JavaScript
+   Search + Filter Engine
    ========================================= */
-
-
-// -----------------------------------------
-// Elements
-// -----------------------------------------
 
 const documentsList =
     document.getElementById("documentsList");
@@ -16,6 +11,18 @@ const searchInput =
 
 const documentStatus =
     document.getElementById("documentStatus");
+
+const categoryFilter =
+    document.getElementById("categoryFilter");
+
+const yearFilter =
+    document.getElementById("yearFilter");
+
+const typeFilter =
+    document.getElementById("typeFilter");
+
+const clearFilters =
+    document.getElementById("clearFilters");
 
 
 // -----------------------------------------
@@ -38,13 +45,93 @@ function formatDate(dateString) {
 
 
 // -----------------------------------------
+// Create Filter Options
+// -----------------------------------------
+
+function populateFilters() {
+
+    const categories = [
+        ...new Set(
+            documents.map(
+                document => document.category
+            )
+        )
+    ].sort();
+
+
+    const years = [
+        ...new Set(
+            documents.map(
+                document =>
+                    new Date(document.date)
+                        .getFullYear()
+                        .toString()
+            )
+        )
+    ].sort().reverse();
+
+
+    const types = [
+        ...new Set(
+            documents.map(
+                document => document.type
+            )
+        )
+    ].sort();
+
+
+    categories.forEach(category => {
+
+        const option =
+            document.createElement("option");
+
+        option.value = category;
+        option.textContent = category;
+
+        categoryFilter.appendChild(option);
+
+    });
+
+
+    years.forEach(year => {
+
+        const option =
+            document.createElement("option");
+
+        option.value = year;
+        option.textContent = year;
+
+        yearFilter.appendChild(option);
+
+    });
+
+
+    types.forEach(type => {
+
+        const option =
+            document.createElement("option");
+
+        option.value = type;
+        option.textContent = type;
+
+        typeFilter.appendChild(option);
+
+    });
+
+}
+
+
+// -----------------------------------------
 // Create Document Card
 // -----------------------------------------
 
 function createDocumentCard(document) {
 
     const tags = document.tags
-        .map(tag => `<span class="tag">${tag}</span>`)
+        .map(
+            tag =>
+                `<span class="tag">${tag}</span>`
+        )
         .join("");
 
 
@@ -57,9 +144,7 @@ function createDocumentCard(document) {
                 <div>
 
                     <div class="document-title">
-
                         ${document.title}
-
                     </div>
 
                     <div class="document-meta">
@@ -87,8 +172,10 @@ function createDocumentCard(document) {
             </div>
 
 
-            <p class="document-meta"
-               style="margin-top:10px;">
+            <p
+                class="document-meta"
+                style="margin-top:10px;"
+            >
 
                 ${document.description}
 
@@ -102,9 +189,7 @@ function createDocumentCard(document) {
                     class="btn btn-primary"
                     target="_blank"
                 >
-
                     👁 View
-
                 </a>
 
 
@@ -113,9 +198,7 @@ function createDocumentCard(document) {
                     class="btn btn-secondary"
                     download
                 >
-
                     ⬇ Download
-
                 </a>
 
             </div>
@@ -142,15 +225,11 @@ function displayDocuments(list) {
             <div class="document-card">
 
                 <div class="document-title">
-
                     No documents found
-
                 </div>
 
                 <div class="document-meta">
-
-                    Try a different search term.
-
+                    Try changing your search or filters.
                 </div>
 
             </div>
@@ -174,72 +253,147 @@ function displayDocuments(list) {
 
     documentStatus.textContent =
         `${list.length} document${list.length !== 1 ? "s" : ""} available`;
+
 }
 
 
 // -----------------------------------------
-// Initial Display
+// Apply Search + Filters
 // -----------------------------------------
 
-displayDocuments(documents);
+function applyFilters() {
+
+    const searchTerm =
+        searchInput.value
+            .toLowerCase()
+            .trim();
+
+    const selectedCategory =
+        categoryFilter.value;
+
+    const selectedYear =
+        yearFilter.value;
+
+    const selectedType =
+        typeFilter.value;
+
+
+    const filteredDocuments =
+        documents.filter(document => {
+
+            const searchableText = [
+
+                document.title,
+
+                document.letterNo,
+
+                document.department,
+
+                document.category,
+
+                document.type,
+
+                document.description,
+
+                ...document.tags
+
+            ]
+                .join(" ")
+                .toLowerCase();
+
+
+            const matchesSearch =
+                !searchTerm ||
+                searchableText.includes(searchTerm);
+
+
+            const matchesCategory =
+                !selectedCategory ||
+                document.category === selectedCategory;
+
+
+            const documentYear =
+                new Date(document.date)
+                    .getFullYear()
+                    .toString();
+
+
+            const matchesYear =
+                !selectedYear ||
+                documentYear === selectedYear;
+
+
+            const matchesType =
+                !selectedType ||
+                document.type === selectedType;
+
+
+            return (
+                matchesSearch &&
+                matchesCategory &&
+                matchesYear &&
+                matchesType
+            );
+
+        });
+
+
+    displayDocuments(filteredDocuments);
+
+}
 
 
 // -----------------------------------------
-// Search
+// Events
 // -----------------------------------------
 
 searchInput.addEventListener(
     "input",
+    applyFilters
+);
+
+categoryFilter.addEventListener(
+    "change",
+    applyFilters
+);
+
+yearFilter.addEventListener(
+    "change",
+    applyFilters
+);
+
+typeFilter.addEventListener(
+    "change",
+    applyFilters
+);
+
+
+// -----------------------------------------
+// Reset Filters
+// -----------------------------------------
+
+clearFilters.addEventListener(
+    "click",
     function () {
 
-        const searchTerm =
-            this.value
-                .toLowerCase()
-                .trim();
+        searchInput.value = "";
 
+        categoryFilter.value = "";
 
-        if (!searchTerm) {
+        yearFilter.value = "";
 
-            displayDocuments(documents);
+        typeFilter.value = "";
 
-            return;
-
-        }
-
-
-        const filteredDocuments =
-            documents.filter(document => {
-
-                const searchableText = [
-
-                    document.title,
-
-                    document.letterNo,
-
-                    document.department,
-
-                    document.category,
-
-                    document.type,
-
-                    document.description,
-
-                    ...document.tags
-
-                ]
-                    .join(" ")
-                    .toLowerCase();
-
-
-                return searchableText
-                    .includes(searchTerm);
-
-            });
-
-
-        displayDocuments(
-            filteredDocuments
-        );
+        displayDocuments(documents);
 
     }
 );
+
+
+// -----------------------------------------
+// Start
+// -----------------------------------------
+
+populateFilters();
+
+displayDocuments(documents);
