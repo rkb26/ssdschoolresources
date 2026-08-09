@@ -38,7 +38,7 @@ const documents = [
         important: true,
 
         file:
-            "documents/Revised%20SSD%20PMS%20Dec%202025%20Rate%20Chart.pdf"
+           "documents/Revised SSD PMS Dec 2025 Rate Chart.pdf"
     },
 
 
