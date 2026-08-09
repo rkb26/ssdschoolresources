@@ -136,6 +136,43 @@ body {
     color: #667085;
 }
 
+/* ---------- Filters ---------- */
+
+.filter-row {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr) auto;
+    gap: 10px;
+    margin-top: 12px;
+}
+
+.filter-row select,
+.filter-clear {
+    min-height: 42px;
+    border: none;
+    border-radius: 9px;
+    padding: 0 13px;
+    font-size: 13px;
+    background: #ffffff;
+    color: #344054;
+    outline: none;
+}
+
+.filter-row select {
+    cursor: pointer;
+}
+
+.filter-clear {
+    background: rgba(255,255,255,0.16);
+    color: #ffffff;
+    border: 1px solid rgba(255,255,255,0.35);
+    cursor: pointer;
+    font-weight: 600;
+}
+
+.filter-clear:hover {
+    background: rgba(255,255,255,0.25);
+}
+
 /* ---------- Main ---------- */
 
 .main-container {
@@ -414,6 +451,14 @@ body {
 
     .btn {
         flex: 1;
+    }
+       .filter-row {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .filter-row select,
+    .filter-clear {
+        width: 100%;
     }
 }
 
