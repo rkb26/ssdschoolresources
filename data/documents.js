@@ -39,42 +39,7 @@ const documents = [
     file: "documents/Revised SSD PMS Dec 2025 Rate Chart.pdf"
 },
     
-    {
-        id: 1,
-
-        title: "Enhancement of Pre-Matric and Post-Matric Scholarship Rates",
-
-        letterNo: "28834/SSD",
-
-        date: "2025-11-27",
-
-        category: "Hostel",
-
-        type: "Resolution",
-
-        authority: "ST & SC Development, M & BCW Department, Government of Odisha",
-
-        summary:
-            "Resolution regarding enhancement of Pre-Matric and Post-Matric Scholarship rates and related boarding, dietary and miscellaneous expenditure.",
-
-        keywords: [
-            "PMS",
-            "Scholarship",
-            "Pre-Matric",
-            "Post-Matric",
-            "ST",
-            "SC",
-            "Boarding",
-            "Hostel"
-        ],
-
-        effectiveFrom: "2025-12-01",
-
-        important: true,
-
-        file:
-           "documents/Revised SSD PMS Dec 2025 Rate Chart.pdf"
-    },
+  
 
 
     // -----------------------------------------
