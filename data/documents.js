@@ -38,7 +38,7 @@ const documents = [
         important: true,
 
         file:
-            "documents/2025/ssd-scholarship-rate-revision-2025.pdf"
+            "documents/Revised%20SSD%20PMS%20Dec%202025%20Rate%20Chart.pdf"
     },
 
 
