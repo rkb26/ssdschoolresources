@@ -37,7 +37,7 @@ const documents = [
     important: true,
 
     file: "documents/Revised SSD PMS Dec 2025 Rate Chart.pdf"
-}
+},
     
     {
         id: 1,
