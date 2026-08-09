@@ -57,7 +57,7 @@ const documents = [
 
         category: "Administration",
 
-        type: "Circular",
+        type: "Letter",
 
         authority: "SSD Department",
 
