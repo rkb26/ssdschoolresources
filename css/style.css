@@ -138,39 +138,59 @@ body {
 
 /* ---------- Filters ---------- */
 
+/* ---------- Search Filters ---------- */
+
 .filter-row {
     display: grid;
-    grid-template-columns: repeat(3, 1fr) auto;
+    grid-template-columns: 1fr 1fr 1fr auto;
     gap: 10px;
     margin-top: 12px;
-}
-
-.filter-row select,
-.filter-clear {
-    min-height: 42px;
-    border: none;
-    border-radius: 9px;
-    padding: 0 13px;
-    font-size: 13px;
-    background: #ffffff;
-    color: #344054;
-    outline: none;
+    width: 100%;
 }
 
 .filter-row select {
+    width: 100%;
+    min-height: 42px;
+    padding: 0 36px 0 13px;
+
+    border: 1px solid rgba(255,255,255,0.25);
+    border-radius: 9px;
+
+    background: rgba(255,255,255,0.96);
+    color: #344054;
+
+    font-family: inherit;
+    font-size: 13px;
+
     cursor: pointer;
+    outline: none;
+}
+
+.filter-row select:focus {
+    border-color: #ffffff;
+    box-shadow: 0 0 0 2px rgba(255,255,255,0.25);
 }
 
 .filter-clear {
-    background: rgba(255,255,255,0.16);
+    min-height: 42px;
+
+    padding: 0 16px;
+
+    border: 1px solid rgba(255,255,255,0.4);
+    border-radius: 9px;
+
+    background: rgba(255,255,255,0.12);
     color: #ffffff;
-    border: 1px solid rgba(255,255,255,0.35);
-    cursor: pointer;
+
+    font-family: inherit;
+    font-size: 13px;
     font-weight: 600;
+
+    cursor: pointer;
 }
 
 .filter-clear:hover {
-    background: rgba(255,255,255,0.25);
+    background: rgba(255,255,255,0.22);
 }
 
 /* ---------- Main ---------- */
@@ -454,6 +474,11 @@ body {
     }
        .filter-row {
         grid-template-columns: 1fr 1fr;
+    }
+
+      .filter-row {
+        grid-template-columns: 1fr 1fr;
+        gap: 8px;
     }
 
     .filter-row select,
