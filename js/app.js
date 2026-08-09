@@ -218,21 +218,7 @@ function createDocumentCard(item) {
 
             <!-- EFFECTIVE DATE -->
 
-            ${
-                item.effectiveFrom
-                ? `
-                    <div class="effective-date">
-
-                        <strong>
-                            Effective from:
-                        </strong>
-
-                        ${formatDate(item.effectiveFrom)}
-
-                    </div>
-                  `
-                : ""
-            }
+         
 
 
             <!-- KEYWORDS -->
