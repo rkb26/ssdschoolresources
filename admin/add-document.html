@@ -1,1 +1,942 @@
+<!DOCTYPE html>
+<html lang="en">
 
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Add SSD Document</title>
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+
+            font-family:
+                -apple-system,
+                BlinkMacSystemFont,
+                "Segoe UI",
+                Roboto,
+                Arial,
+                sans-serif;
+
+            background: #f5f7fb;
+            color: #172033;
+        }
+
+
+        .header {
+            background:
+                linear-gradient(
+                    135deg,
+                    #0d47a1,
+                    #08306b
+                );
+
+            color: white;
+
+            padding: 25px 20px;
+        }
+
+
+        .header-inner {
+            max-width: 800px;
+            margin: auto;
+        }
+
+
+        .header h1 {
+            margin: 0;
+
+            font-size: 23px;
+        }
+
+
+        .header p {
+            margin: 5px 0 0;
+
+            font-size: 13px;
+
+            opacity: .85;
+        }
+
+
+        .container {
+            max-width: 800px;
+
+            margin: 30px auto;
+
+            padding: 0 16px;
+        }
+
+
+        .card {
+            background: white;
+
+            border: 1px solid #e4e7ec;
+
+            border-radius: 14px;
+
+            padding: 25px;
+
+            box-shadow:
+                0 4px 18px
+                rgba(0,0,0,.06);
+        }
+
+
+        .form-group {
+            margin-bottom: 18px;
+        }
+
+
+        label {
+            display: block;
+
+            margin-bottom: 7px;
+
+            font-size: 14px;
+
+            font-weight: 600;
+        }
+
+
+        .required {
+            color: #dc2626;
+        }
+
+
+        input,
+        select,
+        textarea {
+
+            width: 100%;
+
+            padding: 12px 13px;
+
+            border:
+                1px solid #d0d5dd;
+
+            border-radius: 8px;
+
+            font-family: inherit;
+
+            font-size: 14px;
+
+            outline: none;
+
+            background: white;
+        }
+
+
+        input:focus,
+        select:focus,
+        textarea:focus {
+
+            border-color: #0d47a1;
+
+            box-shadow:
+                0 0 0 3px
+                rgba(13,71,161,.1);
+        }
+
+
+        textarea {
+            min-height: 100px;
+
+            resize: vertical;
+        }
+
+
+        .two-column {
+
+            display: grid;
+
+            grid-template-columns:
+                1fr 1fr;
+
+            gap: 15px;
+        }
+
+
+        .help {
+
+            font-size: 12px;
+
+            color: #667085;
+
+            margin-top: 5px;
+        }
+
+
+        .checkbox-row {
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 9px;
+
+            margin-top: 8px;
+        }
+
+
+        .checkbox-row input {
+
+            width: auto;
+        }
+
+
+        button {
+
+            border: none;
+
+            border-radius: 8px;
+
+            padding: 12px 18px;
+
+            font-family: inherit;
+
+            font-size: 14px;
+
+            font-weight: 600;
+
+            cursor: pointer;
+        }
+
+
+        .btn-primary {
+
+            background: #0d47a1;
+
+            color: white;
+        }
+
+
+        .btn-secondary {
+
+            background: #eef2f6;
+
+            color: #344054;
+
+            margin-left: 8px;
+        }
+
+
+        .output {
+
+            display: none;
+
+            margin-top: 25px;
+        }
+
+
+        .output h2 {
+
+            font-size: 17px;
+
+            margin-bottom: 10px;
+        }
+
+
+        .code-box {
+
+            position: relative;
+        }
+
+
+        pre {
+
+            background: #101828;
+
+            color: #e4e7ec;
+
+            padding: 18px;
+
+            border-radius: 10px;
+
+            overflow-x: auto;
+
+            font-size: 12px;
+
+            line-height: 1.6;
+
+            white-space: pre-wrap;
+
+            word-break: break-word;
+        }
+
+
+        .copy-button {
+
+            margin-top: 10px;
+
+            background: #15803d;
+
+            color: white;
+        }
+
+
+        .success {
+
+            display: none;
+
+            background: #ecfdf3;
+
+            border: 1px solid #abefc6;
+
+            color: #067647;
+
+            padding: 12px;
+
+            border-radius: 8px;
+
+            margin-bottom: 15px;
+
+            font-size: 13px;
+        }
+
+
+        @media (max-width: 600px) {
+
+            .two-column {
+
+                grid-template-columns: 1fr;
+
+            }
+
+            .card {
+
+                padding: 18px;
+
+            }
+
+            .btn-secondary {
+
+                margin-left: 0;
+
+                margin-top: 8px;
+
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+<header class="header">
+
+    <div class="header-inner">
+
+        <h1>
+            📄 Add SSD Document
+        </h1>
+
+        <p>
+            SSD School Resources — Publishing Helper
+        </p>
+
+    </div>
+
+</header>
+
+
+<main class="container">
+
+    <div class="card">
+
+
+        <div class="success"
+             id="successMessage">
+
+            Document entry generated successfully.
+
+        </div>
+
+
+        <form id="documentForm">
+
+
+            <!-- TITLE -->
+
+            <div class="form-group">
+
+                <label>
+                    Document Title
+                    <span class="required">*</span>
+                </label>
+
+                <input
+                    type="text"
+                    id="title"
+                    placeholder="Enter document title"
+                    required
+                >
+
+            </div>
+
+
+            <!-- LETTER NUMBER + DATE -->
+
+            <div class="two-column">
+
+
+                <div class="form-group">
+
+                    <label>
+                        Letter / Order No.
+                        <span class="required">*</span>
+                    </label>
+
+                    <input
+                        type="text"
+                        id="letterNo"
+                        placeholder="e.g. 28834/SSD"
+                        required
+                    >
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label>
+                        Document Date
+                        <span class="required">*</span>
+                    </label>
+
+                    <input
+                        type="date"
+                        id="date"
+                        required
+                    >
+
+                </div>
+
+            </div>
+
+
+            <!-- CATEGORY + TYPE -->
+
+            <div class="two-column">
+
+
+                <div class="form-group">
+
+                    <label>
+                        Main Category
+                        <span class="required">*</span>
+                    </label>
+
+                    <select
+                        id="category"
+                        required
+                    >
+
+                        <option value="">
+                            Select category
+                        </option>
+
+                        <option>
+                            Administration
+                        </option>
+
+                        <option>
+                            Academic
+                        </option>
+
+                        <option>
+                            Hostel
+                        </option>
+
+                        <option>
+                            Finance
+                        </option>
+
+                        <option>
+                            Miscellaneous
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label>
+                        Document Type
+                        <span class="required">*</span>
+                    </label>
+
+                    <select
+                        id="type"
+                        required
+                    >
+
+                        <option value="">
+                            Select document type
+                        </option>
+
+                        <option>
+                            Letter
+                        </option>
+
+                        <option>
+                            Resolution
+                        </option>
+
+                        <option>
+                            Notification
+                        </option>
+
+                        <option>
+                            Memo
+                        </option>
+
+                        <option>
+                            SOP
+                        </option>
+
+                        <option>
+                            Guidelines
+                        </option>
+
+                        <option>
+                            Form
+                        </option>
+
+                    </select>
+
+                </div>
+
+            </div>
+
+
+            <!-- AUTHORITY -->
+
+            <div class="form-group">
+
+                <label>
+                    Issuing Authority
+                    <span class="required">*</span>
+                </label>
+
+                <input
+                    type="text"
+                    id="authority"
+                    placeholder="e.g. ST & SC Development Department, Government of Odisha"
+                    required
+                >
+
+            </div>
+
+
+            <!-- SUMMARY -->
+
+            <div class="form-group">
+
+                <label>
+                    Short Summary
+                    <span class="required">*</span>
+                </label>
+
+                <textarea
+                    id="summary"
+                    placeholder="Briefly describe what this document is about..."
+                    required
+                ></textarea>
+
+            </div>
+
+
+            <!-- KEYWORDS -->
+
+            <div class="form-group">
+
+                <label>
+                    Keywords
+                </label>
+
+                <input
+                    type="text"
+                    id="keywords"
+                    placeholder="scholarship, PMS, hostel, ST, SC"
+                >
+
+                <div class="help">
+                    Separate keywords with commas.
+                </div>
+
+            </div>
+
+
+            <!-- EFFECTIVE DATE -->
+
+            <div class="form-group">
+
+                <label>
+                    Effective From
+                </label>
+
+                <input
+                    type="date"
+                    id="effectiveFrom"
+                >
+
+                <div class="help">
+                    Leave blank if the document does not specify an effective date.
+                </div>
+
+            </div>
+
+
+            <!-- PDF FILENAME -->
+
+            <div class="form-group">
+
+                <label>
+                    PDF Filename
+                    <span class="required">*</span>
+                </label>
+
+                <input
+                    type="text"
+                    id="filename"
+                    placeholder="example-document.pdf"
+                    required
+                >
+
+                <div class="help">
+                    Enter the exact filename as it appears inside the documents folder.
+                </div>
+
+            </div>
+
+
+            <!-- IMPORTANT -->
+
+            <div class="form-group">
+
+                <div class="checkbox-row">
+
+                    <input
+                        type="checkbox"
+                        id="important"
+                    >
+
+                    <label
+                        for="important"
+                        style="margin:0;"
+                    >
+                        Mark as Important
+                    </label>
+
+                </div>
+
+            </div>
+
+
+            <!-- BUTTONS -->
+
+            <button
+                type="submit"
+                class="btn-primary"
+            >
+                Generate Entry
+            </button>
+
+
+            <button
+                type="button"
+                class="btn-secondary"
+                onclick="document.getElementById('documentForm').reset(); document.getElementById('output').style.display='none';"
+            >
+                Reset
+            </button>
+
+
+        </form>
+
+
+        <!-- OUTPUT -->
+
+        <div
+            class="output"
+            id="output"
+        >
+
+            <h2>
+                Generated documents.js Entry
+            </h2>
+
+            <div class="code-box">
+
+                <pre id="generatedCode"></pre>
+
+            </div>
+
+
+            <button
+                type="button"
+                class="copy-button"
+                id="copyButton"
+            >
+                📋 Copy Entry
+            </button>
+
+        </div>
+
+
+    </div>
+
+</main>
+
+
+<script>
+
+const form =
+    document.getElementById(
+        "documentForm"
+    );
+
+const output =
+    document.getElementById(
+        "output"
+    );
+
+const generatedCode =
+    document.getElementById(
+        "generatedCode"
+    );
+
+const copyButton =
+    document.getElementById(
+        "copyButton"
+    );
+
+const successMessage =
+    document.getElementById(
+        "successMessage"
+    );
+
+
+form.addEventListener(
+    "submit",
+    function(event) {
+
+        event.preventDefault();
+
+
+        const title =
+            document
+                .getElementById("title")
+                .value
+                .trim();
+
+
+        const letterNo =
+            document
+                .getElementById("letterNo")
+                .value
+                .trim();
+
+
+        const date =
+            document
+                .getElementById("date")
+                .value;
+
+
+        const category =
+            document
+                .getElementById("category")
+                .value;
+
+
+        const type =
+            document
+                .getElementById("type")
+                .value;
+
+
+        const authority =
+            document
+                .getElementById("authority")
+                .value
+                .trim();
+
+
+        const summary =
+            document
+                .getElementById("summary")
+                .value
+                .trim();
+
+
+        const keywordsText =
+            document
+                .getElementById("keywords")
+                .value
+                .trim();
+
+
+        const effectiveFrom =
+            document
+                .getElementById("effectiveFrom")
+                .value;
+
+
+        const filename =
+            document
+                .getElementById("filename")
+                .value
+                .trim();
+
+
+        const important =
+            document
+                .getElementById("important")
+                .checked;
+
+
+        const keywords =
+            keywordsText
+                ? keywordsText
+                    .split(",")
+                    .map(
+                        keyword =>
+                            keyword.trim()
+                    )
+                    .filter(Boolean)
+                : [];
+
+
+        const id =
+            Date.now();
+
+
+        const keywordLines =
+            keywords
+                .map(
+                    keyword =>
+                        `        "${keyword}"`
+                )
+                .join(",\n");
+
+
+        let code = `{
+    id: ${id},
+
+    title: ${JSON.stringify(title)},
+
+    letterNo: ${JSON.stringify(letterNo)},
+
+    date: ${JSON.stringify(date)},
+
+    category: ${JSON.stringify(category)},
+
+    type: ${JSON.stringify(type)},
+
+    authority: ${JSON.stringify(authority)},
+
+    summary: ${JSON.stringify(summary)},
+
+    keywords: [
+${keywordLines}
+    ],
+
+`;
+
+
+        if (effectiveFrom) {
+
+            code +=
+`    effectiveFrom: ${JSON.stringify(effectiveFrom)},\n\n`;
+
+        }
+
+
+        code +=
+`    important: ${important},
+
+    file: ${JSON.stringify(
+        "documents/" + filename
+    )}
+}`;
+
+
+        generatedCode.textContent =
+            code;
+
+
+        output.style.display =
+            "block";
+
+
+        successMessage.style.display =
+            "block";
+
+
+        output.scrollIntoView({
+            behavior: "smooth"
+        });
+
+    }
+);
+
+
+copyButton.addEventListener(
+    "click",
+    async function() {
+
+        try {
+
+            await navigator.clipboard.writeText(
+                generatedCode.textContent
+            );
+
+            copyButton.textContent =
+                "✓ Copied!";
+
+            setTimeout(
+                function() {
+
+                    copyButton.textContent =
+                        "📋 Copy Entry";
+
+                },
+                2000
+            );
+
+        }
+        catch(error) {
+
+            alert(
+                "Copy failed. Please select and copy the code manually."
+            );
+
+        }
+
+    }
+);
+
+</script>
+
+
+</body>
+
+</html>
