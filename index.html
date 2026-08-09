@@ -59,22 +59,45 @@
 
         <div class="search-area">
 
-            <div class="search-box">
+    <div class="search-box">
 
-                <input
-                    type="search"
-                    id="searchInput"
-                    placeholder="Search letters, circulars, guidelines..."
-                    autocomplete="off"
-                >
+        <input
+            type="search"
+            id="searchInput"
+            placeholder="Search letters, circulars, guidelines..."
+            autocomplete="off"
+        >
 
-                <span class="search-icon">
-                    🔍
-                </span>
+        <span class="search-icon">
+            🔍
+        </span>
 
-            </div>
+    </div>
 
-        </div>
+    <div class="filter-row">
+
+        <select id="categoryFilter">
+            <option value="">All Categories</option>
+        </select>
+
+        <select id="yearFilter">
+            <option value="">All Years</option>
+        </select>
+
+        <select id="typeFilter">
+            <option value="">All Document Types</option>
+        </select>
+
+        <button
+            type="button"
+            id="clearFilters"
+            class="filter-clear">
+            Reset
+        </button>
+
+    </div>
+
+</div>
 
     </div>
 
