@@ -1,89 +1,84 @@
 /* =========================================
    SSD SCHOOL RESOURCE PORTAL
-   Search + Filter Engine
+   Document Search & Filter
    ========================================= */
 
-const documentsList =
-    document.getElementById("documentsList");
+const documentsList = document.getElementById("documentsList");
+const searchInput = document.getElementById("searchInput");
+const documentStatus = document.getElementById("documentStatus");
 
-const searchInput =
-    document.getElementById("searchInput");
-
-const documentStatus =
-    document.getElementById("documentStatus");
-
-const categoryFilter =
-    document.getElementById("categoryFilter");
-
-const yearFilter =
-    document.getElementById("yearFilter");
-
-const typeFilter =
-    document.getElementById("typeFilter");
-
-const clearFilters =
-    document.getElementById("clearFilters");
+const categoryFilter = document.getElementById("categoryFilter");
+const yearFilter = document.getElementById("yearFilter");
+const typeFilter = document.getElementById("typeFilter");
+const clearFilters = document.getElementById("clearFilters");
 
 
-// -----------------------------------------
-// Format Date
-// -----------------------------------------
+// =========================================
+// FORMAT DATE
+// =========================================
 
 function formatDate(dateString) {
 
+    if (!dateString) {
+        return "";
+    }
+
     const date = new Date(dateString);
 
-    return date.toLocaleDateString(
-        "en-IN",
-        {
-            day: "2-digit",
-            month: "short",
-            year: "numeric"
-        }
-    );
+    return date.toLocaleDateString("en-IN", {
+        day: "2-digit",
+        month: "short",
+        year: "numeric"
+    });
 }
 
 
-// -----------------------------------------
-// Create Filter Options
-// -----------------------------------------
+// =========================================
+// POPULATE FILTERS
+// =========================================
 
 function populateFilters() {
 
-    const categories = [
-        ...new Set(
-            documents.map(
-                document => document.category
-            )
-        )
-    ].sort();
+    const categories = [];
+
+    const years = [];
+
+    const types = [];
 
 
-    const years = [
-        ...new Set(
-            documents.map(
-                document =>
-                    new Date(document.date)
-                        .getFullYear()
-                        .toString()
-            )
-        )
-    ].sort().reverse();
+    documents.forEach(item => {
+
+        if (item.category && !categories.includes(item.category)) {
+            categories.push(item.category);
+        }
+
+        if (item.date) {
+
+            const year =
+                new Date(item.date).getFullYear().toString();
+
+            if (!years.includes(year)) {
+                years.push(year);
+            }
+        }
+
+        if (item.type && !types.includes(item.type)) {
+            types.push(item.type);
+        }
+
+    });
 
 
-    const types = [
-        ...new Set(
-            documents.map(
-                document => document.type
-            )
-        )
-    ].sort();
+    categories.sort();
+
+    years.sort().reverse();
+
+    types.sort();
 
 
     categories.forEach(category => {
 
-        const option =
-            document.createElement("option");
+        const option = document.createElement("option");
 
         option.value = category;
         option.textContent = category;
@@ -95,8 +90,7 @@ function populateFilters() {
 
     years.forEach(year => {
 
-        const option =
-            document.createElement("option");
+        const option = document.createElement("option");
 
         option.value = year;
         option.textContent = year;
@@ -108,8 +102,7 @@ function populateFilters() {
 
     types.forEach(type => {
 
-        const option =
-            document.createElement("option");
+        const option = document.createElement("option");
 
         option.value = type;
         option.textContent = type;
@@ -121,18 +114,42 @@ function populateFilters() {
 }
 
 
-// -----------------------------------------
-// Create Document Card
-// -----------------------------------------
+// =========================================
+// CREATE DOCUMENT CARD
+// =========================================
 
-function createDocumentCard(document) {
+function createDocumentCard(item) {
 
-    const tags = document.tags
-        .map(
-            tag =>
-                `<span class="tag">${tag}</span>`
-        )
-        .join("");
+    const keywords = item.keywords || [];
+
+
+    let keywordHTML = "";
+
+    keywords.forEach(keyword => {
+
+        keywordHTML += `
+            <span class="tag">
+                ${keyword}
+            </span>
+        `;
+
+    });
+
+
+    let importantHTML = "";
+
+    if (item.important) {
+
+        importantHTML = `
+            <span
+                class="tag"
+                style="background:#fff3cd;color:#8a5a00;"
+            >
+                ⭐ Important
+            </span>
+        `;
+
+    }
 
 
     return `
@@ -144,19 +161,23 @@ function createDocumentCard(document) {
                 <div>
 
                     <div class="document-title">
-                        ${document.title}
+                        ${item.title}
                     </div>
 
                     <div class="document-meta">
 
-                        ${document.department}
-                        •
-                        ${formatDate(document.date)}
+                        ${item.authority || "SSD Department"}
 
                         <br>
 
-                        Letter No:
-                        ${document.letterNo}
+                        ${item.type}
+                        •
+                        ${formatDate(item.date)}
+
+                        <br>
+
+                        Letter / Order No.:
+                        ${item.letterNo}
 
                     </div>
 
@@ -167,7 +188,13 @@ function createDocumentCard(document) {
 
             <div class="document-tags">
 
-                ${tags}
+                <span class="tag">
+                    ${item.category}
+                </span>
+
+                ${importantHTML}
+
+                ${keywordHTML}
 
             </div>
 
@@ -176,25 +203,39 @@ function createDocumentCard(document) {
                 class="document-meta"
                 style="margin-top:10px;"
             >
-
-                ${document.description}
-
+                ${item.summary || ""}
             </p>
+
+
+            ${
+                item.effectiveFrom
+                ? `
+                    <div
+                        class="document-meta"
+                        style="margin-top:8px;"
+                    >
+                        Effective from:
+                        ${formatDate(item.effectiveFrom)}
+                    </div>
+                `
+                : ""
+            }
 
 
             <div class="document-actions">
 
                 <a
-                    href="${document.file}"
+                    href="${item.file}"
                     class="btn btn-primary"
                     target="_blank"
+                    rel="noopener"
                 >
-                    👁 View
+                    📄 View PDF
                 </a>
 
 
                 <a
-                    href="${document.file}"
+                    href="${item.file}"
                     class="btn btn-secondary"
                     download
                 >
@@ -209,16 +250,16 @@ function createDocumentCard(document) {
 }
 
 
-// -----------------------------------------
-// Display Documents
-// -----------------------------------------
+// =========================================
+// DISPLAY DOCUMENTS
+// =========================================
 
 function displayDocuments(list) {
 
     documentsList.innerHTML = "";
 
 
-    if (list.length === 0) {
+    if (!list || list.length === 0) {
 
         documentsList.innerHTML = `
 
@@ -240,33 +281,32 @@ function displayDocuments(list) {
             "No matching documents";
 
         return;
+
     }
 
 
-    list.forEach(document => {
+    list.forEach(item => {
 
         documentsList.innerHTML +=
-            createDocumentCard(document);
+            createDocumentCard(item);
 
     });
 
 
     documentStatus.textContent =
-        `${list.length} document${list.length !== 1 ? "s" : ""} available`;
+        `${list.length} document${list.length === 1 ? "" : "s"} available`;
 
 }
 
 
-// -----------------------------------------
-// Apply Search + Filters
-// -----------------------------------------
+// =========================================
+// FILTER DOCUMENTS
+// =========================================
 
 function applyFilters() {
 
     const searchTerm =
-        searchInput.value
-            .toLowerCase()
-            .trim();
+        searchInput.value.toLowerCase().trim();
 
     const selectedCategory =
         categoryFilter.value;
@@ -278,74 +318,92 @@ function applyFilters() {
         typeFilter.value;
 
 
-    const filteredDocuments =
-        documents.filter(document => {
+    const filtered = documents.filter(item => {
 
-            const searchableText = [
+        const searchableText = [
 
-                document.title,
+            item.title,
 
-                document.letterNo,
+            item.letterNo,
 
-                document.department,
+            item.authority,
 
-                document.category,
+            item.category,
 
-                document.type,
+            item.type,
 
-                document.description,
+            item.summary,
 
-                ...document.tags
+            ...(item.keywords || [])
 
-            ]
-                .join(" ")
-                .toLowerCase();
-
-
-            const matchesSearch =
-                !searchTerm ||
-                searchableText.includes(searchTerm);
+        ]
+            .join(" ")
+            .toLowerCase();
 
 
-            const matchesCategory =
-                !selectedCategory ||
-                document.category === selectedCategory;
+        const searchMatch =
+            !searchTerm ||
+            searchableText.includes(searchTerm);
 
 
-            const documentYear =
-                new Date(document.date)
-                    .getFullYear()
-                    .toString();
+        const categoryMatch =
+            !selectedCategory ||
+            item.category === selectedCategory;
 
 
-            const matchesYear =
-                !selectedYear ||
-                documentYear === selectedYear;
+        const itemYear =
+            new Date(item.date)
+                .getFullYear()
+                .toString();
 
 
-            const matchesType =
-                !selectedType ||
-                document.type === selectedType;
+        const yearMatch =
+            !selectedYear ||
+            itemYear === selectedYear;
 
 
-            return (
-                matchesSearch &&
-                matchesCategory &&
-                matchesYear &&
-                matchesType
-            );
-
-        });
+        const typeMatch =
+            !selectedType ||
+            item.type === selectedType;
 
 
-    displayDocuments(filteredDocuments);
+        return (
+            searchMatch &&
+            categoryMatch &&
+            yearMatch &&
+            typeMatch
+        );
+
+    });
+
+
+    displayDocuments(filtered);
 
 }
 
 
-// -----------------------------------------
-// Events
-// -----------------------------------------
+// =========================================
+// RESET
+// =========================================
+
+function resetFilters() {
+
+    searchInput.value = "";
+
+    categoryFilter.value = "";
+
+    yearFilter.value = "";
+
+    typeFilter.value = "";
+
+    displayDocuments(documents);
+
+}
+
+
+// =========================================
+// EVENTS
+// =========================================
 
 searchInput.addEventListener(
     "input",
@@ -367,32 +425,15 @@ typeFilter.addEventListener(
     applyFilters
 );
 
-
-// -----------------------------------------
-// Reset Filters
-// -----------------------------------------
-
 clearFilters.addEventListener(
     "click",
-    function () {
-
-        searchInput.value = "";
-
-        categoryFilter.value = "";
-
-        yearFilter.value = "";
-
-        typeFilter.value = "";
-
-        displayDocuments(documents);
-
-    }
+    resetFilters
 );
 
 
-// -----------------------------------------
-// Start
-// -----------------------------------------
+// =========================================
+// START
+// =========================================
 
 populateFilters();
 
