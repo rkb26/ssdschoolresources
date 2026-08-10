@@ -4,6 +4,35 @@ const documents = [
     // REAL SSD DOCUMENT
     // -----------------------------------------
 
+{
+    id: 1786326251961,
+
+    title: "Instructions regarding implementation of scholarship schemes of this department for ST, SC, OBC, SEBC and EBC students for AY 2026-27",
+
+    letterNo: "15376/SSD",
+
+    date: "2026-07-04",
+
+    category: "Finance",
+
+    type: "Letter",
+
+    authority: "ST & SC Development, M & BCW Department, Government of Odisha",
+
+    summary: "Letter from Commissioner-cum-Secretary of this department to all collectors - Instructions regarding implementation of scholarship schemes of this department for ST, SC, OBC, SEBC and EBC students for AY 2026-27.",
+
+    keywords: [
+        "PMS",
+        "Scholarship",
+        "Pre-Matric Scholarship",
+        "Post-Matric Scholarship"
+    ],
+
+    important: false,
+
+    file: "documents/15376 PMS schemes for AY 2026-27.pdf"
+}
+    
  {
     id: 1786267413832,
 
@@ -40,126 +69,3 @@ const documents = [
 },
     
   
-
-
-    // -----------------------------------------
-    // SAMPLE DOCUMENTS
-    // -----------------------------------------
-
-    {
-        id: 2,
-
-        title: "Sample SSD Circular – School Administration",
-
-        letterNo: "SSD/2026/001",
-
-        date: "2026-08-09",
-
-        category: "Administration",
-
-        type: "Letter",
-
-        authority: "SSD Department",
-
-        summary:
-            "Sample document for testing the SSD School Resource Portal.",
-
-        keywords: [
-            "Administration",
-            "Circular",
-            "School"
-        ],
-
-        important: false,
-
-        file: "#"
-    },
-
-
-    {
-        id: 3,
-
-        title: "Sample Academic Guidelines",
-
-        letterNo: "SSD/2026/002",
-
-        date: "2026-08-07",
-
-        category: "Academic",
-
-        type: "Guidelines",
-
-        authority: "SSD Department",
-
-        summary:
-            "Sample academic guidelines used for testing the portal.",
-
-        keywords: [
-            "Academic",
-            "Guidelines"
-        ],
-
-        important: false,
-
-        file: "#"
-    },
-
-
-    {
-        id: 4,
-
-        title: "Sample Finance Notification",
-
-        letterNo: "SSD/2026/003",
-
-        date: "2026-08-05",
-
-        category: "Finance",
-
-        type: "Notification",
-
-        authority: "SSD Department",
-
-        summary:
-            "Sample finance notification for testing the portal.",
-
-        keywords: [
-            "Finance",
-            "Notification"
-        ],
-
-        important: false,
-
-        file: "#"
-    },
-
-
-    {
-        id: 5,
-
-        title: "Sample Miscellaneous Form",
-
-        letterNo: "SSD/2026/004",
-
-        date: "2026-08-02",
-
-        category: "Miscellaneous",
-
-        type: "Form",
-
-        authority: "SSD Department",
-
-        summary:
-            "Sample form for testing the miscellaneous category.",
-
-        keywords: [
-            "Form",
-            "Miscellaneous"
-        ],
-
-        important: false,
-
-        file: "#"
-    }
-
-];
