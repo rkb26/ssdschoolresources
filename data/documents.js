@@ -28,7 +28,7 @@ const documents = [
     important: false,
 
     file: "documents/8055-School and Hostel management guidelines.pdf"
-}
+},
 {
     id: 1786326251961,
 
@@ -91,6 +91,6 @@ const documents = [
     important: true,
 
     file: "documents/Revised SSD PMS Dec 2025 Rate Chart.pdf"
-},
+}
     
   
