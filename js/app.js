@@ -391,7 +391,12 @@ function applyFilters() {
     });
 
 
-    displayDocuments(filtered);
+filtered.sort(
+    (a, b) =>
+        new Date(b.date) - new Date(a.date)
+);
+
+displayDocuments(filtered);
 
 }
 
@@ -410,7 +415,12 @@ function resetFilters() {
 
     typeFilter.value = "";
 
-    displayDocuments(documents);
+   const sortedDocuments = [...documents].sort(
+    (a, b) =>
+        new Date(b.date) - new Date(a.date)
+);
+
+displayDocuments(sortedDocuments);
 
 }
 
@@ -451,4 +461,9 @@ clearFilters.addEventListener(
 
 populateFilters();
 
-displayDocuments(documents);
+const sortedDocuments = [...documents].sort(
+    (a, b) =>
+        new Date(b.date) - new Date(a.date)
+);
+
+displayDocuments(sortedDocuments);
