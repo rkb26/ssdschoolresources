@@ -3,7 +3,32 @@ const documents = [
     // -----------------------------------------
     // REAL SSD DOCUMENT
     // -----------------------------------------
+{
+    id: 1786326911516,
 
+    title: "School and hostel management guidelines for the schools under ST and SC development department.",
+
+    letterNo: "8055/SSD",
+
+    date: "2013-02-19",
+
+    category: "Administration",
+
+    type: "Guidelines",
+
+    authority: "ST and SC Development Department, Govt. of Odisha",
+
+    summary: "School and hostel management guidelines for the schools under ST and SC development department regarding inspecting authorities, school management, Hostel management, and registers/records to be maintained.",
+
+    keywords: [
+        "Hostel management guidelines",
+        "Registers to be maintained"
+    ],
+
+    important: false,
+
+    file: "documents/8055-School and Hostel management guidelines.pdf"
+}
 {
     id: 1786326251961,
 
