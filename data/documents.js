@@ -1,96 +1,94 @@
 const documents = [
 
-    // -----------------------------------------
-    // REAL SSD DOCUMENT
-    // -----------------------------------------
-{
-    id: 1786326911516,
+    {
+        id: 1786326911516,
 
-    title: "School and hostel management guidelines for the schools under ST and SC development department.",
+        title: "School and hostel management guidelines for the schools under ST and SC development department.",
 
-    letterNo: "8055/SSD",
+        letterNo: "8055/SSD",
 
-    date: "2013-02-19",
+        date: "2013-02-19",
 
-    category: "Administration",
+        category: "Administration",
 
-    type: "Guidelines",
+        type: "Guidelines",
 
-    authority: "ST and SC Development Department, Govt. of Odisha",
+        authority: "ST and SC Development Department, Govt. of Odisha",
 
-    summary: "School and hostel management guidelines for the schools under ST and SC development department regarding inspecting authorities, school management, Hostel management, and registers/records to be maintained.",
+        summary: "School and hostel management guidelines for the schools under ST and SC development department regarding inspecting authorities, school management, Hostel management, and registers/records to be maintained.",
 
-    keywords: [
-        "Hostel management guidelines",
-        "Registers to be maintained"
-    ],
+        keywords: [
+            "Hostel management guidelines",
+            "Registers to be maintained"
+        ],
 
-    important: false,
+        important: false,
 
-    file: "documents/8055-School and Hostel management guidelines.pdf"
-},
-{
-    id: 1786326251961,
+        file: "documents/8055-School and Hostel management guidelines.pdf"
+    },
 
-    title: "Instructions regarding implementation of scholarship schemes of this department for ST, SC, OBC, SEBC and EBC students for AY 2026-27",
 
-    letterNo: "15376/SSD",
+    {
+        id: 1786326251961,
 
-    date: "2026-07-04",
+        title: "Instructions regarding implementation of scholarship schemes of this department for ST, SC, OBC, SEBC and EBC students for AY 2026-27",
 
-    category: "Finance",
+        letterNo: "15376/SSD",
 
-    type: "Letter",
+        date: "2026-07-04",
 
-    authority: "ST & SC Development, M & BCW Department, Government of Odisha",
+        category: "Finance",
 
-    summary: "Letter from Commissioner-cum-Secretary of this department to all collectors - Instructions regarding implementation of scholarship schemes of this department for ST, SC, OBC, SEBC and EBC students for AY 2026-27.",
+        type: "Letter",
 
-    keywords: [
-        "PMS",
-        "Scholarship",
-        "Pre-Matric Scholarship",
-        "Post-Matric Scholarship"
-    ],
+        authority: "ST & SC Development, M & BCW Department, Government of Odisha",
 
-    important: false,
+        summary: "Letter from Commissioner-cum-Secretary of this department to all collectors - Instructions regarding implementation of scholarship schemes of this department for ST, SC, OBC, SEBC and EBC students for AY 2026-27.",
 
-    file: "documents/15376 PMS schemes for AY 2026-27.pdf"
-},
-    
- {
-    id: 1786267413832,
+        keywords: [
+            "PMS",
+            "Scholarship",
+            "Pre-Matric Scholarship",
+            "Post-Matric Scholarship"
+        ],
 
-    title: "Enhancement of Pre-Matric and Post-Matric Scholarship Rates",
+        important: false,
 
-    letterNo: "28834/SSD",
+        file: "documents/15376 PMS schemes for AY 2026-27.pdf"
+    },
 
-    date: "2025-11-27",
 
-    category: "Hostel",
+    {
+        id: 1786267413832,
 
-    type: "Resolution",
+        title: "Enhancement of Pre-Matric and Post-Matric Scholarship Rates",
 
-    authority: "ST & SC Development, M & BCW Department, Government of Odisha",
+        letterNo: "28834/SSD",
 
-    summary: "Resolution regarding enhancement of Pre-Matric and Post-Matric Scholarship rates and related boarding, dietary and miscellaneous expenditure.",
+        date: "2025-11-27",
 
-    keywords: [
-        "PMS",
-        "Scholarship",
-        "Pre-Matric",
-        "Post-Matric",
-        "ST",
-        "SC",
-        "Boarding",
-        "Hostel"
-    ],
+        category: "Hostel",
 
-    effectiveFrom: "2025-12-01",
+        type: "Resolution",
 
-    important: true,
+        authority: "ST & SC Development, M & BCW Department, Government of Odisha",
 
-    file: "documents/Revised SSD PMS Dec 2025 Rate Chart.pdf"
-}
-    
-  
+        summary: "Resolution regarding enhancement of Pre-Matric and Post-Matric Scholarship rates and related boarding, dietary and miscellaneous expenditure.",
+
+        keywords: [
+            "PMS",
+            "Scholarship",
+            "Pre-Matric",
+            "Post-Matric",
+            "ST",
+            "SC",
+            "Boarding",
+            "Hostel"
+        ],
+
+        important: true,
+
+        file: "documents/Revised SSD PMS Dec 2025 Rate Chart.pdf"
+    }
+
+];
