@@ -1,6 +1,30 @@
 const documents = [
 
+{
+    id: 1787020843140,
 
+    title: "Guidelines for mess management in residentials schools under ST & SC development department",
+
+    letterNo: "32701/SSD",
+
+    date: "2014-02-05",
+
+    category: "Hostel",
+
+    type: "Guidelines",
+
+    authority: "ST & SC Development Department, Government of Odisha",
+
+    summary: "Hostel mess management guidelines , details on procurement of food items, storage, kitchen cooking place, personal hygiene of CCA, safety during cooking and serving.",
+
+    keywords: [
+        "Mess management guidelines"
+    ],
+
+    important: false,
+
+    file: "documents/No32701_dt_51214_Guidelines_Mess_Mgt.pdf"
+},
     {
     id: 1787020326180,
 
